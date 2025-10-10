@@ -1,6 +1,10 @@
 package com.pluralsight;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.nio.Buffer;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -113,7 +117,30 @@ public class FinancialTracker {
     /* ------------------------------------------------------------------
        Display helpers: show data in neat columns
        ------------------------------------------------------------------ */
-    private static void displayLedger() { /* TODO – print all transactions in column format */ }
+    private static void displayLedger() {
+        System.out.println("Date         Time         Description         Vendor             Amount");
+        System.out.println("---------------------------------------------------------------------------");
+
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(FILE_NAME));
+
+            String line;
+            while ((line = bufferedReader.readLine()) != null ){
+//                System.out.println(line);
+                String[] parts = line.split("\\|");
+                String date = parts[0];
+                String time = parts[1];
+                String description = parts[2];
+                String vendor = parts[3];
+                double amount = Double.parseDouble(parts[4]);
+                System.out.println(date + "     " + time + "     " + description + "               " + vendor + "     " +amount);
+            }
+            bufferedReader.close();
+
+        } catch (Exception ex) {
+            System.err.println("An error occurred");
+        }
+    }
 
     private static void displayDeposits() { /* TODO – only amount > 0               */ }
 
