@@ -63,9 +63,24 @@ public class FinancialTracker {
      * • Each line looks like: date|time|description|vendor|amount
      */
     public static void loadTransactions(String fileName) {
-        // TODO: create file if it does not exist, then read each line,
-        //       parse the five fields, build a Transaction object,
-        //       and add it to the transactions list.
+
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(FILE_NAME));
+            String line;
+            while ((line = bufferedReader.readLine()) != null ){
+                String[] parts = line.split("\\|");
+                String date = parts[0];
+                String time = parts[1];
+                String description = parts[2];
+                String vendor = parts[3];
+                double amount = Double.parseDouble(parts[4]);
+                transactions.add(new Transaction(date, time, description, vendor, amount));
+            }
+            bufferedReader.close();
+
+        } catch (Exception ex) {
+            System.err.println("Error");
+        }
     }
 
     /**
@@ -104,9 +119,9 @@ public class FinancialTracker {
             String input = scanner.nextLine().trim();
 
             switch (input.toUpperCase()) {
-                case "A" -> displayLedger(); // I want this done today ---------------------------------------------------
-                case "D" -> displayDeposits(); // I want this done today as well ------------------------------------------
-                case "P" -> displayPayments(); // this done today ------------------------------------------------------
+                case "A" -> displayLedger(); // Done
+                case "D" -> displayDeposits(); // Done
+                case "P" -> displayPayments(); // Done
                 case "R" -> reportsMenu(scanner);
                 case "H" -> running = false;
                 default -> System.out.println("Invalid option");
@@ -122,29 +137,36 @@ public class FinancialTracker {
         System.out.println("---------------------------------------------------------------------------");
 
         try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(FILE_NAME));
-
-            String line;
-            while ((line = bufferedReader.readLine()) != null ){
-//                System.out.println(line);
-                String[] parts = line.split("\\|");
-                String date = parts[0];
-                String time = parts[1];
-                String description = parts[2];
-                String vendor = parts[3];
-                double amount = Double.parseDouble(parts[4]);
-                System.out.println(date + "     " + time + "     " + description + "               " + vendor + "     " +amount);
+            for (Transaction transaction : transactions) {
+                System.out.println(transaction.getDate() + "     " + transaction.getTime() + "     " + transaction.getDescription() + "               " + transaction.getVendor() + "     " + transaction.getAmount());
             }
-            bufferedReader.close();
 
         } catch (Exception ex) {
             System.err.println("An error occurred");
         }
     }
 
-    private static void displayDeposits() { /* TODO – only amount > 0               */ }
+    private static void displayDeposits() {
+        System.out.println("Date         Time         Description         Vendor             Amount");
+        System.out.println("---------------------------------------------------------------------------");
 
-    private static void displayPayments() { /* TODO – only amount < 0               */ }
+        for (Transaction transaction : transactions) {
+            if (transaction.getAmount() >= 0) {
+                System.out.println(transaction.getDate() + "     " + transaction.getTime() + "     " + transaction.getDescription() + "               " + transaction.getVendor() + "     " + transaction.getAmount());
+            }
+        }
+    }
+
+    private static void displayPayments() {
+        System.out.println("Date         Time         Description         Vendor             Amount");
+        System.out.println("---------------------------------------------------------------------------");
+
+        for (Transaction transaction : transactions) {
+            if (transaction.getAmount() < 0) {
+                System.out.println(transaction.getDate() + "     " + transaction.getTime() + "     " + transaction.getDescription() + "               " + transaction.getVendor() + "     " + transaction.getAmount());
+            }
+        }
+    }
 
     /* ------------------------------------------------------------------
        Reports menu
