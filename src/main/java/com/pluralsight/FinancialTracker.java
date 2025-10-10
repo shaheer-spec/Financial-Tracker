@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /*
- * Capstone skeleton – personal finance tracker.
- * ------------------------------------------------
  * File format  (pipe-delimited)
  *     yyyy-MM-dd|HH:mm:ss|description|vendor|amount
  * A deposit has a positive amount; a payment is stored
@@ -17,9 +15,6 @@ import java.util.Scanner;
  */
 public class FinancialTracker {
 
-    /* ------------------------------------------------------------------
-       Shared data and formatters
-       ------------------------------------------------------------------ */
     private static final ArrayList<Transaction> transactions = new ArrayList<>();
     private static final String FILE_NAME = "transactions.csv";
 
@@ -31,9 +26,6 @@ public class FinancialTracker {
     private static final DateTimeFormatter TIME_FMT = DateTimeFormatter.ofPattern(TIME_PATTERN);
     private static final DateTimeFormatter DATETIME_FMT = DateTimeFormatter.ofPattern(DATETIME_PATTERN);
 
-    /* ------------------------------------------------------------------
-       Main menu
-       ------------------------------------------------------------------ */
     public static void main(String[] args) {
         loadTransactions(FILE_NAME);
 
@@ -61,10 +53,6 @@ public class FinancialTracker {
         scanner.close();
     }
 
-    /* ------------------------------------------------------------------
-       File I/O
-       ------------------------------------------------------------------ */
-
     /**
      * Load transactions from FILE_NAME.
      * • If the file doesn’t exist, create an empty one so that future writes succeed.
@@ -76,10 +64,6 @@ public class FinancialTracker {
         //       and add it to the transactions list.
     }
 
-    /* ------------------------------------------------------------------
-       Add new transactions
-       ------------------------------------------------------------------ */
-
     /**
      * Prompt for ONE date+time string in the format
      * "yyyy-MM-dd HH:mm:ss", plus description, vendor, amount.
@@ -87,7 +71,7 @@ public class FinancialTracker {
      * Store the amount as-is (positive) and append to the file.
      */
     private static void addDeposit(Scanner scanner) {
-        // TODO
+
     }
 
     /**
@@ -116,9 +100,9 @@ public class FinancialTracker {
             String input = scanner.nextLine().trim();
 
             switch (input.toUpperCase()) {
-                case "A" -> displayLedger();
-                case "D" -> displayDeposits();
-                case "P" -> displayPayments();
+                case "A" -> displayLedger(); // I want this done today ---------------------------------------------------
+                case "D" -> displayDeposits(); // I want this done today as well ------------------------------------------
+                case "P" -> displayPayments(); // this done today ------------------------------------------------------
                 case "R" -> reportsMenu(scanner);
                 case "H" -> running = false;
                 default -> System.out.println("Invalid option");
