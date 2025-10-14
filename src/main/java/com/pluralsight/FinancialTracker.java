@@ -232,14 +232,32 @@ public class FinancialTracker {
 
             switch (input) {
                 case "1" -> {
-                    java.time.LocalDate start = LocalDate.now().withDayOfMonth(1);
+                    LocalDate start = LocalDate.now().withDayOfMonth(1);
                     LocalDate end = LocalDate.now();
                     filterTransactionsByDate(start, end);
                 }
-                case "2" -> {/* TODO – previous month report */ }
-                case "3" -> {/* TODO – year-to-date report   */ }
-                case "4" -> {/* TODO – previous year report  */ }
-                case "5" -> {/* TODO – prompt for vendor then report */ }
+                case "2" -> {
+                    LocalDate previousMonth = LocalDate.now().minusMonths(1);
+                    LocalDate start = previousMonth.withDayOfMonth(1);
+                    LocalDate end = previousMonth.withDayOfMonth(previousMonth.lengthOfMonth());
+                    filterTransactionsByDate(start, end);
+                }
+                case "3" -> {
+                    LocalDate start = LocalDate.now().withDayOfYear(1);
+                    LocalDate end = LocalDate.now();
+                    filterTransactionsByDate(start, end);
+                }
+                case "4" -> {
+                    LocalDate previousYear = LocalDate.now().minusYears(1);
+                    LocalDate start = previousYear.withDayOfYear(1);
+                    LocalDate end = previousYear.withDayOfYear(previousYear.lengthOfYear());
+                    filterTransactionsByDate(start, end);
+                }
+                case "5" -> {
+                    System.out.print("Vendor name: ");
+                    String vendor = scanner.nextLine();
+                    filterTransactionsByVendor(vendor);
+                }
                 case "6" -> customSearch(scanner);
                 case "0" -> running = false;
                 default -> System.out.println("Invalid option");
@@ -261,10 +279,19 @@ public class FinancialTracker {
                 System.out.printf("%-12s %-10s %-30s %-20s %10.2f \n", transaction.getDate(), transaction.getTime(), transaction.getDescription(), transaction.getVendor(), transaction.getAmount());
             }
         }
-        // TODO – iterate transactions, print those within the range
     }
 
     private static void filterTransactionsByVendor(String vendor) {
+
+        System.out.println("Date         Time         Description                  Vendor                  Amount");
+        System.out.println("----------------------------------------------------------------------------------------------");
+
+        for (Transaction transaction : transactions) {
+            String vendor2 = transaction.getVendor();
+            if (vendor2.equalsIgnoreCase(vendor)){
+                System.out.printf("%-12s %-10s %-30s %-20s %10.2f \n", transaction.getDate(), transaction.getTime(), transaction.getDescription(), transaction.getVendor(), transaction.getAmount());
+            }
+        }
         // TODO – iterate transactions, print those with matching vendor
     }
 
