@@ -75,6 +75,8 @@ public class FinancialTracker {
             }
             bufferedReader.close();
 
+            // Need to add transactions.sort() so it shows latest to oldest.
+
         } catch (Exception ex) {
             System.err.println("Error");
         }
@@ -229,7 +231,11 @@ public class FinancialTracker {
             String input = scanner.nextLine().trim();
 
             switch (input) {
-                case "1" -> {/* TODO – month-to-date report */ }
+                case "1" -> {
+                    java.time.LocalDate start = LocalDate.now().withDayOfMonth(1);
+                    LocalDate end = LocalDate.now();
+                    filterTransactionsByDate(start, end);
+                }
                 case "2" -> {/* TODO – previous month report */ }
                 case "3" -> {/* TODO – year-to-date report   */ }
                 case "4" -> {/* TODO – previous year report  */ }
@@ -245,6 +251,16 @@ public class FinancialTracker {
        Reporting helpers
        ------------------------------------------------------------------ */
     private static void filterTransactionsByDate(LocalDate start, LocalDate end) {
+
+        System.out.println("Date         Time         Description                  Vendor                  Amount");
+        System.out.println("----------------------------------------------------------------------------------------------");
+
+        for (Transaction transaction : transactions) {
+            LocalDate date = transaction.getDate();
+            if (date.isAfter(start) && date.isBefore(end)){
+                System.out.printf("%-12s %-10s %-30s %-20s %10.2f \n", transaction.getDate(), transaction.getTime(), transaction.getDescription(), transaction.getVendor(), transaction.getAmount());
+            }
+        }
         // TODO – iterate transactions, print those within the range
     }
 
