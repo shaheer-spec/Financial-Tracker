@@ -3,6 +3,7 @@ package com.pluralsight;
 import java.io.*;
 import java.nio.Buffer;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -296,9 +297,53 @@ public class FinancialTracker {
     }
 
     private static void customSearch(Scanner scanner) {
-        // TODO – prompt for any combination of date range, description,
-        //        vendor, and exact amount, then display matches
+        System.out.print("Start date (yyyy-MM-dd, blank = none): ");
+        String startDateString = scanner.nextLine().trim();
+
+        System.out.print("end date (yyyy-MM-dd, blank = none): ");
+        String endDateString = scanner.nextLine().trim();
+
+        System.out.print("Description (blank = any): ");
+        String description = scanner.nextLine();
+
+        System.out.print("Vendor (blank = any): ");
+        String vendor = scanner.nextLine();
+
+        System.out.print("Amount (blank = any): ");
+        String amount = scanner.nextLine();
+
+        Double finalAmount = null;
+        if (!amount.isEmpty()){
+            finalAmount = Double.parseDouble(amount);
+        }
+        LocalDate startDate = null;
+        if (!startDateString.isEmpty()) {
+            startDate = LocalDate.parse(startDateString);
+        }
+        LocalDate endDate = null;
+        if (!endDateString.isEmpty()){
+            endDate = LocalDate.parse(endDateString);
+        }
+
+        System.out.println("Date         Time         Description                  Vendor                  Amount");
+        System.out.println("----------------------------------------------------------------------------------------------");
+        try {
+            for (Transaction transaction : transactions) {
+                if (startDate != null && transaction.getDate().isBefore(startDate)){ continue; }
+                if (endDate != null && transaction.getDate().isAfter(endDate)) { continue; }
+                if (!description.isEmpty() && !description.equalsIgnoreCase(transaction.getDescription())) { continue; }
+                if (!vendor.isEmpty() && !vendor.equalsIgnoreCase(transaction.getVendor())) { continue; }
+                if (finalAmount != null && transaction.getAmount() != finalAmount) { continue; }
+
+                System.out.printf("%-12s %-10s %-30s %-20s %10.2f \n", transaction.getDate(), transaction.getTime(), transaction.getDescription(), transaction.getVendor(), transaction.getAmount());
+            }
+        } catch (Exception ex){
+            System.err.println("Error");
+        }
+
     }
+    // TODO – prompt for any combination of date range, description,
+    //        vendor, and exact amount, then display matches
 
     /* ------------------------------------------------------------------
        Utility parsers (you can reuse in many places)
