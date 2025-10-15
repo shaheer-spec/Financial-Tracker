@@ -35,7 +35,10 @@ This program aims to solve the problem of manually tracking your financial recor
 
 ## Setup
 
-Instructions on how to set up and run the project using IntelliJ IDEA.
+1. Create a new project on intelliJ
+2. create 2 classes (FinancialTracker and Transaction)
+3. insert the transactions.csv file
+4. copy and paste the code for FinancialTracker and Transaction class
 
 ### Prerequisites
 
@@ -54,37 +57,30 @@ Follow these steps to get your application running within IntelliJ IDEA:
 
 ## Technologies Used
 
-- Java: Mention the version you are using.
+- Java 17
 - Any additional libraries or frameworks used in the project.
 
 ## Demo
 
-Include screenshots or GIFs that show your application in action. Use tools like [Giphy Capture](https://giphy.com/apps/giphycapture) to record a GIF of your application.
 
-![Application Screenshot](path/to/your/screenshot.png)
+- ![Demo of Financial Tracker](demo.gif)
 
 ## Future Work
 
-Outline potential future enhancements or functionalities you might consider adding:
-
-- Additional feature to be developed.
-- Improvement of current functionalities.
+- Add a monthly / yearly summary report that shows net income, average expense, etc.
+- Support for recurring transactions (auto-insert rent, subscriptions, payroll).
 
 ## Resources
 
-List resources such as tutorials, articles, or documentation that helped you during the project.
 
-- [Java Programming Tutorial](https://www.example.com)
-- [Effective Java](https://www.example.com)
+- [java cheatsheet](https://quickref.me/java)
+- [Dates and Times](https://docs.oracle.com/javase/8/docs/api/java/time/LocalDate.html)
 
 ## Team Members
 
-- **Name 1** - Specific contributions or roles.
-- **Name 2** - Specific contributions or roles.
+- 
 
 ## Thanks
 
-Express gratitude towards those who provided help, guidance, or resources:
 
-- Thank you to [Mentor's Name] for continuous support and guidance.
-- A special thanks to all teammates for their dedication and teamwork.
+- Thank you to Raymond Maroun for helping me with multiple parts of my code.
