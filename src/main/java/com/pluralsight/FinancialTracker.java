@@ -132,18 +132,18 @@ public class FinancialTracker {
         while (running) {
             System.out.println("Ledger");
             System.out.println("Choose an option:");
-            System.out.println("A) All");                              // Done
-            System.out.println("D) Deposits");                         // Done
-            System.out.println("P) Payments");                         // Done
+            System.out.println("A) All");
+            System.out.println("D) Deposits");
+            System.out.println("P) Payments");
             System.out.println("R) Reports");
             System.out.println("H) Home");
 
             String input = scanner.nextLine().trim();
 
             switch (input.toUpperCase()) {
-                case "A" -> displayLedger();   // Done
-                case "D" -> displayDeposits(); // Done
-                case "P" -> displayPayments(); // Done
+                case "A" -> displayLedger();
+                case "D" -> displayDeposits();
+                case "P" -> displayPayments();
                 case "R" -> reportsMenu(scanner);
                 case "H" -> running = false;
                 default -> System.out.println("Invalid option");

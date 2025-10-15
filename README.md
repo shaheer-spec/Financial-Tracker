@@ -1,15 +1,37 @@
-# Project Title
+# Financial Tracker
 
 ## Description of the Project
 
-Briefly describe what this Java console application does. Mention its purpose and who the intended users are. Explain the main functionality and what problems it aims to solve.
+The Financial Tracker Application allows users to record, manage, and review their financial transactions.
+The purpose of this application is to help users track their income and expenses by adding deposits, recording payments, and showing reports over specific time periods.
+The intended users for this application are individual users that want to keep track of their expenses.
+
+The Main function of this application:
+
+- Add a deposit
+- Make a payment
+- View your ledger with filters 
+  - View your deposits 
+  - View your payments
+- View your reports (Filter your reports)
+  - Month to date
+  - Previous Month
+  - Year to date
+  - Previous Year
+  - Specific vendor
+  - Custom Search
+
+This program aims to solve the problem of manually tracking your financial records by providing an organized interface where users can input and analyze their spending patterns easily.
 
 ## User Stories
 
-List the user stories that guided the development of your application. Format these stories as: "As a [type of user], I want [some goal] so that [some reason]."
 
-- As a user, I want to be able to input my data, so that the application can process it accordingly.
-- As a user, I want to receive immediate feedback, so I can understand what to do next.
+- As a user, I want to view all my transactions in a ledger, so that I can review my financial activity in order.
+- As a user, I want to make a new deposit, so that I can keep track of all deposits.
+- As a user, I want to make a new payment, so that I can keep track of all of my payments.
+- As a user, I want to view all of my reports based on the date, so that I can filter my transactions.
+- As a user, I want to be able to create a custom search, so that I can filter my transactions.
+- As a user, I want to view all of my transactions in a well organized and latest to oldest transactions, so that it is easier to read my transactions.
 
 ## Setup
 
