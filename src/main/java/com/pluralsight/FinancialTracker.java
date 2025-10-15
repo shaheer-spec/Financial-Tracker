@@ -57,9 +57,7 @@ public class FinancialTracker {
                 transactions.add(new Transaction(date, time, description, vendor, amount));
             }
 
-            transactions.sort(Comparator.comparing(Transaction::getDate)
-                    .thenComparing(Transaction::getTime)
-                    .reversed());
+            sortTransactions();
 
             bufferedReader.close();
         } catch (Exception ex) {
@@ -88,9 +86,7 @@ public class FinancialTracker {
             bufferedWriter.close();
             transactions.add(new Transaction(date, time, description, vendor, amount));
 
-            transactions.sort(Comparator.comparing(Transaction::getDate)
-                    .thenComparing(Transaction::getTime)
-                    .reversed());
+            sortTransactions();
 
         } catch (Exception ex) {
             System.err.println("Error");
@@ -118,13 +114,17 @@ public class FinancialTracker {
             bufferedWriter.close();
             transactions.add(new Transaction(date, time, description, vendor, amount));
 
-            transactions.sort(Comparator.comparing(Transaction::getDate)
-                    .thenComparing(Transaction::getTime)
-                    .reversed());
+            sortTransactions();
 
         } catch (Exception ex) {
             System.err.println("Error");
         }
+    }
+
+    public static void sortTransactions (){
+        transactions.sort(Comparator.comparing(Transaction::getDate)
+                .thenComparing(Transaction::getTime)
+                .reversed());
     }
 
     private static void ledgerMenu(Scanner scanner) {
