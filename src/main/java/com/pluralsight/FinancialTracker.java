@@ -1,13 +1,13 @@
 package com.pluralsight;
 
+import java.awt.List;
 import java.io.*;
 import java.nio.Buffer;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 
 /*
  * File format  (pipe-delimited)
@@ -76,6 +76,9 @@ public class FinancialTracker {
             }
             bufferedReader.close();
 
+            transactions.sort(Comparator.comparing(Transaction::getDate)
+                    .thenComparing(Transaction::getTime)
+                    .reversed());
             // Need to add transactions.sort() so it shows latest to oldest.
 
         } catch (Exception ex) {
@@ -97,7 +100,7 @@ public class FinancialTracker {
         System.out.print("Vendor: ");
         String vendor = scanner.nextLine();
         System.out.print("Amount (Positive): ");
-        int amount = scanner.nextInt();
+        double amount = scanner.nextDouble();
         scanner.nextLine();
 
         try {
@@ -128,7 +131,7 @@ public class FinancialTracker {
         System.out.print("Vendor: ");
         String vendor = scanner.nextLine();
         System.out.print("Amount (Negative): ");
-        int amount = scanner.nextInt();
+        double amount = scanner.nextDouble();
         scanner.nextLine();
 
         try {
