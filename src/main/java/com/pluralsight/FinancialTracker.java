@@ -204,7 +204,10 @@ public class FinancialTracker {
     private static void reportsMenu(Scanner scanner) {
         boolean running = true;
         while (running) {
-            System.out.println("Reports");
+            System.out.println();
+            System.out.println("╔══════════════════════╗");
+            System.out.println("║        Reports       ║");
+            System.out.println("╚══════════════════════╝");
             System.out.println("Choose an option:");
             System.out.println("1) Month To Date");
             System.out.println("2) Previous Month");
@@ -278,6 +281,12 @@ public class FinancialTracker {
     }
 
     private static void customSearch(Scanner scanner) {
+
+        System.out.println();
+        System.out.println("╔════════════════════════════╗");
+        System.out.println("║        Custom Search       ║");
+        System.out.println("╚════════════════════════════╝");
+
         System.out.print("Start date (yyyy-MM-dd, blank = none): ");
         String startDateString = scanner.nextLine().trim();
 
