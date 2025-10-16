@@ -58,7 +58,7 @@ Follow these steps to get your application running within IntelliJ IDEA:
 ## Technologies Used
 
 - Java 17
-- Any additional libraries or frameworks used in the project.
+- IntelliJ Idea.
 
 ## Demo
 
@@ -76,9 +76,6 @@ Follow these steps to get your application running within IntelliJ IDEA:
 - [java cheatsheet](https://quickref.me/java)
 - [Dates and Times](https://docs.oracle.com/javase/8/docs/api/java/time/LocalDate.html)
 
-## Team Members
-
-- 
 
 ## Thanks
 

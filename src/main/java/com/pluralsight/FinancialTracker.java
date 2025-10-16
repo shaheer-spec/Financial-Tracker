@@ -22,7 +22,9 @@ public class FinancialTracker {
         boolean running = true;
 
         while (running) {
-            System.out.println("Welcome to TransactionApp");
+            System.out.println("╔═══════════════════════════════════════╗");
+            System.out.println("║       Welcome to TransactionApp       ║");
+            System.out.println("╚═══════════════════════════════════════╝");
             System.out.println("Choose an option:");
             System.out.println("D) Add Deposit");
             System.out.println("P) Make Payment (Debit)");
@@ -66,6 +68,10 @@ public class FinancialTracker {
     }
 
     private static void addDeposit(Scanner scanner) {
+        System.out.println();
+        System.out.println("╔═══════════════════╗");
+        System.out.println("║    Add Deposit    ║");
+        System.out.println("╚═══════════════════╝");
         System.out.print("Date & Time (yyyy-MM-dd HH:mm:ss): ");
         String dateTime = scanner.nextLine();
         System.out.print("Description: ");
@@ -94,6 +100,10 @@ public class FinancialTracker {
     }
 
     private static void addPayment(Scanner scanner) {
+        System.out.println();
+        System.out.println("╔═══════════════════╗");
+        System.out.println("║    Add Payment    ║");
+        System.out.println("╚═══════════════════╝");
         System.out.print("Date & Time (yyyy-MM-dd HH:mm:ss): ");
         String dateTime = scanner.nextLine();
         System.out.print("Description: ");
@@ -130,7 +140,10 @@ public class FinancialTracker {
     private static void ledgerMenu(Scanner scanner) {
         boolean running = true;
         while (running) {
-            System.out.println("Ledger");
+            System.out.println();
+            System.out.println("╔══════════════════════╗");
+            System.out.println("║        Ledger        ║");
+            System.out.println("╚══════════════════════╝");
             System.out.println("Choose an option:");
             System.out.println("A) All");
             System.out.println("D) Deposits");
